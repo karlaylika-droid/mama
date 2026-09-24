@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Настройка именно под телефон -->
+    <meta name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+
+    <title>Для моей мамы ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+
+            background: linear-gradient(
+                160deg,
+                #fff4f7,
+                #ffdce7
+            );
+
+            color: #5a2638;
+
+            overflow-x: hidden;
+        }
+
+
+        /* ===== ЭКРАН ===== */
+
+        .screen {
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 30px 20px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* ===== ПЕРВЫЙ ЭКРАН ===== */
+
+        .cake {
+            font-size: 75px;
+
+            margin-bottom: 25px;
+
+            animation: float 2s infinite ease-in-out;
+        }
+
+
+        h1 {
+            font-size: 32px;
+            line-height: 1.2;
+
+            margin-bottom: 18px;
+        }
+
+
+        .subtitle {
+            font-size: 18px;
+            line-height: 1.5;
+
+            margin-bottom: 35px;
+        }
+
+
+        .start-button {
+            border: none;
+
+            background: #d94f78;
+
+            color: white;
+
+            padding: 17px 32px;
+
+            border-radius: 40px;
+
+            font-size: 17px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(217, 79, 120, 0.3);
+
+            cursor: pointer;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        .start-button:active {
+            transform: scale(0.94);
+        }
+
+
+        /* ===== ЭКРАН С СЕРДЕЧКАМИ ===== */
+
+        .title {
+            font-size: 27px;
+            line-height: 1.25;
+
+            margin-bottom: 12px;
+        }
+
+
+        .description {
+            font-size: 16px;
+            line-height: 1.5;
+
+            margin-bottom: 28px;
+        }
+
+
+        .hearts {
+            width: 100%;
+            max-width: 360px;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .heart {
+            height: 115px;
+
+            border: none;
+
+            background: white;
+
+            border-radius: 25px;
+
+            font-size: 48px;
+
+            box-shadow:
+                0 6px 18px
+                rgba(100, 30, 50, 0.12);
+
+            cursor: pointer;
+
+            -webkit-tap-highlight-color: transparent;
+
+            transition: 0.25s;
+        }
+
+
+        .heart:active {
+            transform: scale(0.9);
+        }
+
+
+        .heart.opened {
+            background: #d94f78;
+
+            color: white;
+
+            transform: scale(0.95);
+        }
+
+
+        /* ===== ПРИЧИНА ===== */
+
+        .reason-box {
+            width: 100%;
+            max-width: 360px;
+
+            background: white;
+
+            padding: 30px 22px;
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(100, 30, 50, 0.15);
+
+            animation: appear 0.4s ease;
+        }
+
+
+        .reason-number {
+            font-size: 16px;
+
+            color: #d94f78;
+
+            margin-bottom: 18px;
+        }
+
+
+        .reason-text {
+            font-size: 20px;
+
+            line-height: 1.5;
+        }
+
+
+        .close-button {
+            margin-top: 25px;
+
+            border: none;
+
+            background: #f5b4c8;
+
+            color: #5a2638;
+
+            padding: 13px 23px;
+
+            border-radius: 25px;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+
+        /* ===== ФИНАЛ ===== */
+
+        .final-heart {
+            font-size: 90px;
+
+            margin-bottom: 25px;
+
+            animation: heartbeat 1.2s infinite;
+        }
+
+
+        .final-title {
+            font-size: 32px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .final-text {
+            max-width: 360px;
+
+            font-size: 18px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ===== КОНФЕТТИ ===== */
+
+        .confetti {
+            position: fixed;
+
+            top: -30px;
+
+            font-size: 24px;
+
+            pointer-events: none;
+
+            animation:
+                fall 3s linear forwards;
+        }
+
+
+        /* ===== АНИМАЦИИ ===== */
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+
+        @keyframes fall {
+
+            to {
+                transform:
+                    translateY(110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================================= -->
+    <!-- ПЕРВЫЙ ЭКРАН -->
+    <!-- ================================= -->
+
+    <section
+        id="welcome"
+        class="screen">
+
+        <div class="cake">
+            🎂
+        </div>
+
+
+        <h1>
+            С днём рождения,<br>
+            мамочка! ❤️
+        </h1>
+
+
+        <p class="subtitle">
+            У меня для тебя есть<br>
+            один маленький подарок...
+        </p>
+
+
+        <button
+            class="start-button"
+            onclick="startGift()">
+
+            Открыть подарок 🎁
+
+        </button>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- СЕРДЕЧКИ -->
+    <!-- ================================= -->
+
+    <section
+        id="reasons"
+        class="screen hidden">
+
+
+        <h2 class="title">
+            10 причин, почему<br>
+            ты лучшая мама ❤️
+        </h2>
+
+
+        <p class="description">
+            Нажимай на сердечки<br>
+            и открывай их по одному 💗
+        </p>
+
+
+        <div class="hearts">
+
+
+            <button
+                class="heart"
+                onclick="openReason(0, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(1, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(2, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(3, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(4, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(5, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(6, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(7, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(8, this)">
+                ❤️
+            </button>
+
+
+            <button
+                class="heart"
+                onclick="openReason(9, this)">
+                ❤️
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- ОТКРЫТАЯ ПРИЧИНА -->
+    <!-- ================================= -->
+
+    <section
+        id="reasonScreen"
+        class="screen hidden">
+
+
+        <div class="reason-box">
+
+
+            <div
+                id="reasonNumber"
+                class="reason-number">
+            </div>
+
+
+            <div
+                id="reasonText"
+                class="reason-text">
+            </div>
+
+
+            <button
+                class="close-button"
+                onclick="closeReason()">
+
+                Вернуться к сердечкам ❤️
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- ФИНАЛ -->
+    <!-- ================================= -->
+
+    <section
+        id="final"
+        class="screen hidden">
+
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+
+        <h2 class="final-title">
+            Ты открыла все 10!
+        </h2>
+
+
+        <p class="final-text">
+
+            Но на самом деле причин
+            любить тебя намного больше... ❤️
+
+            <br><br>
+
+            Спасибо тебе за всё,
+            что ты делаешь для меня
+            каждый день.
+
+            <br><br>
+
+            Я очень тебя люблю,
+            мамочка! ❤️
+
+            <br><br>
+
+            С днём рождения! 🎂💐
+
+        </p>
+
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================= -->
+
+    <script>
+
+
+        /* ===== НАШИ 10 ПРИЧИН ===== */
+
+
+        const reasons = [
+
+            "За то, что ты всегда веришь в меня, даже когда я сама в себя не верю. ❤️",
+
+            "За твою заботу, которую невозможно заменить. 🌷",
+
+            "За то, что рядом с тобой я всегда чувствую себя дома. 🏠❤️",
+
+            "За твои объятия, которые могут исправить даже самый плохой день. 🤗",
+
+            "За твоё терпение, понимание и доброту. 💗",
+
+            "За все маленькие вещи, которые ты делаешь для меня каждый день. 🌸",
+
+            "За то, что ты не просто моя мама, а ещё и самый родной человек. 🫶",
+
+            "За твоё большое сердце и любовь, которую ты мне даришь. ❤️",
+
+            "За все наши воспоминания, которые я никогда не забуду. 📸",
+
+            "Просто потому что ты — моя мама, и я бесконечно тебя люблю. ❤️"
+
+        ];
+
+
+
+        /* ===== СКОЛЬКО ОТКРЫТО ===== */
+
+
+        let opened = 0;
+
+
+
+        /* ===== КНОПКА «ОТКРЫТЬ ПОДАРОК» ===== */
+
+
+        function startGift() {
+
+            document
+                .getElementById("welcome")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("reasons")
+                .classList
+                .remove("hidden");
+
+        }
+
+
+
+        /* ===== ОТКРЫТИЕ СЕРДЕЧКА ===== */
+
+
+        function openReason(number, button) {
+
+
+            document
+                .getElementById("reasonNumber")
+                .innerText =
+                "Причина №" + (number + 1);
+
+
+            document
+                .getElementById("reasonText")
+                .innerText =
+                reasons[number];
+
+
+            document
+                .getElementById("reasons")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("reasonScreen")
+                .classList
+                .remove("hidden");
+
+
+
+            /* Если это сердечко ещё
+               не открывали */
+
+            if (!button.classList.contains("opened")) {
+
+
+                button
+                    .classList
+                    .add("opened");
+
+
+                opened++;
+
+            }
+
+        }
+
+
+
+        /* ===== ВЕРНУТЬСЯ К СЕРДЕЧКАМ ===== */
+
+
+        function closeReason() {
+
+
+            document
+                .getElementById("reasonScreen")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("reasons")
+                .classList
+                .remove("hidden");
+
+
+
+            /* Если открыты все 10 */
+
+            if (opened === 10) {
+
+                setTimeout(
+                    showFinal,
+                    400
+                );
+
+            }
+
+        }
+
+
+
+        /* ===== ФИНАЛ ===== */
+
+
+        function showFinal() {
+
+
+            document
+                .getElementById("reasons")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("final")
+                .classList
+                .remove("hidden");
+
+
+            createConfetti();
+
+        }
+
+
+
+        /* ===== КОНФЕТТИ ===== */
+
+
+        function createConfetti() {
+
+
+            const symbols = [
+                "❤️",
+                "💗",
+                "💕",
+                "✨",
+                "🌸",
+                "🎉"
+            ];
+
+
+            for (
+                let i = 0;
+                i < 40;
+                i++
+            ) {
+
+
+                const confetti =
+                    document.createElement("div");
+
+
+                confetti
+                    .className =
+                    "confetti";
+
+
+                confetti
+                    .innerText =
+                    symbols[
+                        Math.floor(
+                            Math.random()
+                            * symbols.length
+                        )
+                    ];
+
+
+                confetti.style.left =
+                    Math.random()
+                    * 100
+                    + "vw";
+
+
+                confetti.style.animationDelay =
+                    Math.random()
+                    * 2
+                    + "s";
+
+
+                document.body
+                    .appendChild(confetti);
+
+
+
+                setTimeout(() => {
+
+                    confetti.remove();
+
+                }, 5000);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
